@@ -195,12 +195,16 @@ const modalPhoto = document.getElementById("modal-photo");
 const modalCaption = document.getElementById("modal-caption");
 const modalClose = document.getElementById("modal-close");
 
+let openedBoxesCount = 0;
+const totalBoxes = 4;
+
 document.addEventListener("click", (e) => {
     const giftBox = e.target.closest(".gift-box");
     
     if (giftBox && !giftBox.classList.contains("opened")) {
         // Mark as opened
         giftBox.classList.add("opened");
+        openedBoxesCount++;
         
         // Get photo and caption from data attributes
         const photoSrc = giftBox.getAttribute("data-photo");
@@ -217,10 +221,34 @@ document.addEventListener("click", (e) => {
             document.body.style.overflow = "hidden"; // Prevent scroll
         }, 400);
         
-        // Optional: Play sound effect
-        // You can add a "pop" or "gift opening" sound here
+        // Check if all boxes are opened
+        if (openedBoxesCount === totalBoxes) {
+            // Wait for photo modal to be closed, then show confess
+            setTimeout(() => {
+                checkAndShowConfess();
+            }, 1000);
+        }
     }
 });
+
+// Check and show confess modal
+function checkAndShowConfess() {
+    // Wait a bit after last photo is viewed
+    const checkInterval = setInterval(() => {
+        if (!photoModal.classList.contains("active")) {
+            clearInterval(checkInterval);
+            showConfessModal();
+        }
+    }, 500);
+}
+
+function showConfessModal() {
+    const confessModal = document.getElementById("confess-modal");
+    setTimeout(() => {
+        confessModal.classList.add("active");
+        createConfetti(); // Confetti again!
+    }, 1000);
+}
 
 // Close Modal
 function closeModal() {
@@ -238,4 +266,50 @@ document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && photoModal.classList.contains("active")) {
         closeModal();
     }
+});
+
+// Confess Modal Logic
+const confessModal = document.getElementById("confess-modal");
+const confessYes = document.getElementById("confess-yes");
+const confessNo = document.getElementById("confess-no");
+const celebrationModal = document.getElementById("celebration-modal");
+
+// Confess Yes Button
+confessYes.addEventListener("click", () => {
+    // Hide confess modal
+    confessModal.classList.remove("active");
+    
+    // Show celebration with delay
+    setTimeout(() => {
+        celebrationModal.classList.add("active");
+        createConfetti(); // More confetti!
+        
+        // Keep confetti going
+        const confettiInterval = setInterval(() => {
+            createConfetti();
+        }, 1500);
+        
+        // Stop after 10 seconds
+        setTimeout(() => {
+            clearInterval(confettiInterval);
+        }, 10000);
+    }, 500);
+});
+
+// Confess No Button (make it hard to click)
+confessNo.addEventListener("mouseover", () => {
+    const randomX = Math.random() * 300 - 150;
+    const randomY = Math.random() * 300 - 150;
+    confessNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+});
+
+confessNo.addEventListener("click", () => {
+    // Even if they manage to click, show a message
+    alert("Oops! Button error 😅 Try the YES button instead! 💖");
+});
+
+// Close celebration modal (if they want to see it again)
+document.querySelector(".celebration-overlay")?.addEventListener("click", () => {
+    celebrationModal.classList.remove("active");
+    document.body.style.overflow = "auto";
 });
