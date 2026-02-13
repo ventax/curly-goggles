@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💝 Will you be my Valentine? 💝</title>
+
+    <!-- Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Will you be my Valentine?" />
+    <meta property="og:description" content="A special Valentine's message for you ❤️" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="A special Valentine's letter for someone special" />
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💝</text></svg>" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Pixelify+Sans:wght@400..700&display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- No Button Sound Effect -->
+    <audio id="noSound">
+        <source src="no.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button id="music-toggle" class="music-toggle" aria-label="Toggle Music">
+        🔊
+    </button>
+
+    <!-- Yellow Sparkles Decoration -->
+    <div class="sparkles-decoration">
+        <span class="sparkle sparkle-1">✨</span>
+        <span class="sparkle sparkle-2">⭐</span>
+        <span class="sparkle sparkle-3">💛</span>
+        <span class="sparkle sparkle-4">🌟</span>
+        <span class="sparkle sparkle-5">✨</span>
+        <span class="sparkle sparkle-6">⭐</span>
+    </div>
+
+    <!-- Floating Hearts Background -->
+    <div class="hearts-container" id="hearts-container"></div>
+
+    <!-- Envelope Screen -->
+    <div id="envelope-container">
+        <img src="envelope.png" alt="Envelope" id="envelope" />
+        <p>♡ Letter for You ♡</p>
+    </div>
+
+    <!-- Letter Screen -->
+    <div id="letter-container">
+        <div class="letter-window">
+            <h1 id="letter-title">Will you be my Valentine?</h1>
+
+            <img src="cat_heart.gif" class="cat" id="letter-cat" />
+
+            <div class="buttons" id="letter-buttons">
+                <img src="yes.png" class="btn yes-btn" alt="Yes" />
+
+                <div class="no-wrapper">
+                    <img src="no.png" class="btn no-btn" alt="No" />
+                </div>
+            </div>
+
+            <div id="message-section" style="display: none">
+                <p id="final-text" class="final-text">
+                    <strong>Happy Valentine's</strong> Day, Chitato you're my love, You make my life brighter every
+                    single
+                    day. Loving you is the best decision I've ever made. You are my favorite person, today and always.
+                    I'm grateful for every second spent with you.
+                    I will always choose you, no matter what.
+                    Forever isn't long enough with you. Happy Valentine's Day, my love.
+                </p>
+
+                <!-- Button to reveal gifts -->
+                <button id="reveal-gifts-btn" class="reveal-gifts-btn">
+                    <span class="btn-icon">🎁</span>
+                    <span class="btn-text">See Your Gifts</span>
+                    <span class="btn-icon">🎁</span>
+                </button>
+            </div>
+
+            <!-- Mystery Gift Boxes Section -->
+            <div class="mystery-boxes" id="mystery-boxes" style="display: none">
+                <p class="boxes-title">💝 Open your gifts! 💝</p>
+                <div class="boxes-container">
+                    <!-- Box 1 -->
+                    <div class="gift-box" data-box="1" data-photo="photo1.jpg"
+                        data-caption="Our first moment together 💖">
+                        <div class="box-lid">
+                            <div class="bow">🎀</div>
+                        </div>
+                        <div class="box-body"></div>
+                    </div>
+
+                    <!-- Box 2 -->
+                    <div class="gift-box" data-box="2" data-photo="photo2.jpg" data-caption="You make me smile ☀️">
+                        <div class="box-lid">
+                            <div class="bow">🎀</div>
+                        </div>
+                        <div class="box-body"></div>
+                    </div>
+
+                    <!-- Box 3 -->
+                    <div class="gift-box" data-box="3" data-photo="photo3.jpg" data-caption="Forever with you 💛">
+                        <div class="box-lid">
+                            <div class="bow">🎀</div>
+                        </div>
+                        <div class="box-body"></div>
+                    </div>
+
+                    <!-- Box 4 -->
+                    <div class="gift-box" data-box="4" data-photo="photo4.jpg" data-caption="My favorite person ✨">
+                        <div class="box-lid">
+                            <div class="bow">🎀</div>
+                        </div>
+                        <div class="box-body"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo Popup Modal -->
+            <div class="photo-modal" id="photo-modal">
+                <div class="modal-overlay"></div>
+                <div class="modal-content">
+                    <button class="modal-close" id="modal-close">✕</button>
+                    <div class="modal-photo-wrapper">
+                        <img src="" alt="Memory" id="modal-photo" class="modal-photo" />
+                    </div>
+                    <p class="modal-caption" id="modal-caption"></p>
+                    <div class="modal-decorations">
+                        <span class="modal-sparkle">✨</span>
+                        <span class="modal-sparkle">💛</span>
+                        <span class="modal-sparkle">✨</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
